@@ -1,0 +1,34 @@
+package com.jumongweb.fitness.activityservice.controller;
+
+import com.jumongweb.fitness.activityservice.dto.ActivityRequest;
+import com.jumongweb.fitness.activityservice.dto.ActivityResponse;
+import com.jumongweb.fitness.activityservice.service.ActivityService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/activities")
+@AllArgsConstructor
+public class ActivityController {
+
+    private final ActivityService activityService;
+
+    @PostMapping
+    public ResponseEntity<ActivityResponse> trackActivity(@RequestBody ActivityRequest activityRequest){
+        return ResponseEntity.ok(activityService.trackActivity(activityRequest));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ActivityResponse>> getActivities(@RequestHeader("X-User-ID") String userId){
+        return ResponseEntity.ok(activityService.getUserActivities(userId));
+    }
+
+    @GetMapping("/{activityId}")
+    public ResponseEntity<ActivityResponse> getActivity(@PathVariable String activityId){
+        return ResponseEntity.ok(activityService.getActivityById(activityId));
+    }
+
+}
