@@ -8,11 +8,10 @@ spring:
       database: recommendations
 
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5000}
+    username: admin
+    password: admin
 
 server:
   port: 9093
@@ -29,4 +28,9 @@ rabbitmq:
     name: activity.queue
   routing:
     key: activity.tracking
+
+gemini:
+  api:
+    url: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}
 

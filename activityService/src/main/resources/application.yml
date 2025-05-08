@@ -7,10 +7,12 @@ spring:
       database: fitnessactivity
 
   rabbitmq:
-    host:
-    port: 5672
-    username: guest
-    password: guest
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5000}
+    username: admin
+    password: admin
+#    username: ${RABBITMQ_DEFAULT_USER:guest}
+#    password: ${RABBITMQ_DEFAULT_PASS:guest}
 
 server:
   port: 9092
