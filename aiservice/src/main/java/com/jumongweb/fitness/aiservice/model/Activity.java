@@ -9,6 +9,7 @@ import java.util.Map;
 @Data
 public class Activity {
     private String id;
+    private String type;
     private String userId;
     private Integer duration;
     private Integer caloriesBurned;
